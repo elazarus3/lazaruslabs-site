@@ -23,4 +23,5 @@ When you update a price, update the source **and** the "verified" date with it.
 
 ## Note
 
-`hello@lazaruslabs.app` and `privacy@lazaruslabs.app` are placeholders.
+`support@lazaruslabs.app` is the single contact address for the site. It is routed by
+Cloudflare Email Routing to a real inbox.
