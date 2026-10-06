@@ -5,18 +5,22 @@ Static site for **Clicksy™**, the GLP-1 dose-splitting and savings tracker.
 | Page | Purpose |
 | --- | --- |
 | `index.html` | Landing page |
-| `pricing.html` | Pricing hub — all medications, sources, and payment pathways |
+| `pricing.html` | Pricing hub — every medication, its source, and how patients pay |
 | `privacy.html` | Privacy policy |
 | `assets/` | Clicksy brand marks |
 
 ## Deploy
 
-Vercel: import this repository, Framework preset **Other**, Output Directory **.**.
-No build command and no dependencies — the site is already static HTML.
+Pushes to `main` deploy automatically. No build step, no dependencies — the site is
+already static HTML, and `vercel.json` pins the output directory to the repo root.
+
+Production URL: <https://lazaruslabs.app>
 
 ## Editing prices
 
 Every figure in `pricing.html` carries its source and the date it was verified.
-Update the price, the source, **and** the "verified" date together.
+When you update a price, update the source **and** the "verified" date with it.
 
-> `hello@lazaruslabs.app` and `privacy@lazaruslabs.app` are placeholders.
+## Note
+
+`hello@lazaruslabs.app` and `privacy@lazaruslabs.app` are placeholders.
