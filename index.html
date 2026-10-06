@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clicksy™ — GLP-1 dose splitting and savings tracker</title>
+<meta name="description" content="Clicksy tracks your GLP-1 dose, what it costs, and how much you can save — without changing a thing about your prescription.">
+<meta property="og:title" content="Clicksy™ — know your dose, know your cost">
+<meta property="og:description" content="GLP-1 dose splitting, cost tracking and savings — built for patients and providers.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/mark-512.png">
+<link rel="icon" href="/assets/mark-48.png" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/mark-256.png">
+<style>
+  :root{
+    --blue:#0A5AA5;            /* app adaptive-icon background */
+    --blue-600:#084a86;
+    --ink:#0d1b2a; --muted:#4a5b6c; --line:#e2e8f0;
+    --bg:#ffffff; --soft:#f6f9fc;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(13,27,42,.06), 0 8px 24px rgba(13,27,42,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#eaf1f8; --muted:#a3b4c4; --line:#243447; --bg:#0b1620; --soft:#12212f;
+           --blue:#4a9de8; --blue-600:#6fb3ef; --shadow:0 1px 2px rgba(0,0,0,.4); }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  a{color:var(--blue)}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+         backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:inherit}
+  .brand img{width:30px;height:30px;display:block}
+  nav.links{margin-left:auto;display:flex;gap:22px}
+  nav.links a{color:var(--muted);text-decoration:none;font-size:15px}
+  nav.links a:hover{color:var(--ink)}
+  @media (max-width:720px){ nav.links{display:none} }
+  .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;
+       padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent}
+  .btn:hover{background:var(--blue-600)}
+  .btn.ghost{background:transparent;color:var(--blue);border-color:var(--line)}
+  main>section{padding:72px 0}
+  .hero{padding:88px 0 64px;text-align:center}
+  .hero img{width:76px;height:76px}
+  h1{font-size:clamp(30px,5vw,46px);line-height:1.12;letter-spacing:-.025em;margin:18px 0 14px}
+  .lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:640px;margin:0 auto 26px}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .eyebrow{text-transform:uppercase;letter-spacing:.09em;font-size:12px;font-weight:700;color:var(--blue)}
+  h2{font-size:clamp(23px,3.4vw,31px);letter-spacing:-.02em;margin:0 0 12px}
+  .sub{color:var(--muted);max-width:640px;margin:0 0 34px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card h3{margin:0 0 8px;font-size:17px;letter-spacing:-.01em}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .stat{text-align:left}
+  .stat b{display:block;font-size:30px;letter-spacing:-.02em;color:var(--blue);line-height:1.1}
+  .stat span{font-size:14px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  caption{text-align:left;color:var(--muted);font-size:14px;padding:0 0 10px}
+  th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);padding:6px 14px}
+  details{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:600;font-size:15px}
+  details p{margin:10px 0 0;color:var(--muted);font-size:15px}
+  .note{border-left:3px solid var(--blue);background:var(--soft);padding:14px 18px;border-radius:0 10px 10px 0;color:var(--muted);font-size:15px}
+  .src{font-size:12px;color:var(--muted)}
+  .foot{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14px}
+  .foot a{color:var(--muted)}
+  .tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:999px;
+       padding:2px 9px;color:var(--muted);vertical-align:middle}
+  @media print{
+    header,.cta{display:none}
+    body{color:#000;background:#fff}
+    .tablewrap{border:0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/assets/mark-64.png" alt="" width="30" height="30">Clicksy™</a>
+    <nav class="links">
+      <a href="#what">What it does</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/privacy.html">Privacy</a>
+      <a class="btn" href="#get">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero wrap">
+  <img src="/assets/mark-256.png" alt="Clicksy logo" width="76" height="76">
+  <h1>Know your dose. Know what it costs. Know what you save.</h1>
+  <p class="lede">Clicksy tracks your GLP-1 medication, works out exactly what each dose costs,
+     and shows you where you can save — without changing anything about your prescription.</p>
+  <div class="cta">
+    <a class="btn" href="#get">Get Clicksy</a>
+    <a class="btn ghost" href="/pricing.html">See pricing</a>
+  </div>
+  <p class="src" style="margin-top:22px">For patients and providers. Not medical advice.</p>
+</section>
+
+<section id="what" class="wrap">
+  <p class="eyebrow">What it does</p>
+  <h2>Built around the three things that actually matter</h2>
+  <p class="sub">Most apps track a number. Clicksy connects the dose, the cost, and the result.</p>
+  <div class="grid">
+    <div class="card"><h3>Your dose, precisely</h3>
+      <p>Log a split dose and Clicksy remembers the pen, the clicks, and the exact milligrams — so you are never guessing at the start of the week.</p></div>
+    <div class="card"><h3>Your real cost</h3>
+      <p>Cash, list, and coverage pricing for each medication, with the source and the date it was checked. No invented numbers.</p></div>
+    <div class="card"><h3>Your savings</h3>
+      <p>See what a medication costs you per month, and where a clinically appropriate change would make a real difference.</p></div>
+    <div class="card"><h3>Nutrition &amp; weight</h3>
+      <p>Protein, fiber, water and sleep tracked against your own goals — protein first, because that is what protects muscle.</p></div>
+    <div class="card"><h3>Provider mode</h3>
+      <p>A separate toolbench for clinicians: coverage checks, prior authorization, and letters — with none of your own patient data mixed in.</p></div>
+    <div class="card"><h3>Private by design</h3>
+      <p>Your health data stays on your device. Provider mode is stateless by construction, not by policy.</p></div>
+  </div>
+</section>
+
+<section id="savings" class="wrap">
+  <p class="eyebrow">A real example</p>
+  <h2>Same drug. Very different bill.</h2>
+  <p class="sub">Generic liraglutide versus the brand, from prices verified in September 2026.</p>
+  <div class="grid">
+    <div class="card stat"><span>Brand (Saxenda)</span><b>$1,200</b><span>per month</span></div>
+    <div class="card stat"><span>Generic liraglutide</span><b>$372.45</b><span>per month</span></div>
+    <div class="card stat"><span>Difference</span><b>−69%</b><span>about $9,930 a year</span></div>
+  </div>
+  <p class="note" style="margin-top:22px">Prices move, plans differ, and only your prescriber can change
+     what you take. Clicksy shows you the numbers so you can have that conversation — it does not make the decision.</p>
+</section>
+
+<section id="pricing" class="wrap">
+  <p class="eyebrow">Pricing</p>
+  <h2>What the medications actually cost</h2>
+  <p class="sub">Cash prices for the drugs people ask about most. Every figure carries its source and
+     the date it was checked. <a href="/pricing.html">Full pricing hub →</a></p>
+  <div class="tablewrap">
+    <table>
+      <caption>Cash price per month, verified September 2026. Not what you will necessarily pay.</caption>
+      <thead><tr><th scope="col">Medication</th><th scope="col">Generic</th><th scope="col" class="num">Cash / month</th><th scope="col">Source</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Saxenda</th><td>Liraglutide</td><td class="num">$1,200</td><td class="src">NovoCare (manufacturer)</td></tr>
+        <tr><th scope="row">Liraglutide (generic)</th><td>Liraglutide</td><td class="num">$372.45</td><td class="src">GoodRx (aggregator)</td></tr>
+        <tr><th scope="row">Wegovy</th><td>Semaglutide</td><td class="num">$349</td><td class="src">NovoCare (manufacturer)</td></tr>
+        <tr><th scope="row">Zepbound</th><td>Tirzepatide</td><td class="num">$299–$500</td><td class="src">LillyDirect (manufacturer)</td></tr>
+        <tr><th scope="row">Ozempic</th><td>Semaglutide</td><td class="num">$349–$499</td><td class="src">NovoCare (manufacturer)</td></tr>
+        <tr><th scope="row">Qsymia</th><td>Phentermine / topiramate</td><td class="num">$70–$100</td><td class="src">Qsymia.com (manufacturer)</td></tr>
+        <tr><th scope="row">Contrave</th><td>Naltrexone / bupropion ER</td><td class="num">$99</td><td class="src">Contrave.com (manufacturer)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="src" style="margin-top:12px">Cash prices are the baseline we measure savings against — not a quote for you.
+     Coverage depends on your plan. Verify any figure before acting on it.</p>
+</section>
+
+<section id="get" class="wrap">
+  <p class="eyebrow">Get the app</p>
+  <h2>Clicksy is available on Android</h2>
+  <p class="sub">Ask in your clinic, or reach out and we will send you the link.</p>
+  <div class="cta" style="justify-content:flex-start">
+    <a class="btn" href="mailto:hello@lazaruslabs.app">Request the app</a>
+    <a class="btn ghost" href="/privacy.html">Read the privacy policy</a>
+  </div>
+</section>
+
+<section id="faq" class="wrap">
+  <p class="eyebrow">Questions</p>
+  <h2>Frequently asked</h2>
+  <p class="sub">Short answers to the ones we get most.</p>
+
+  <details><summary>Are these prices guaranteed?</summary>
+    <p>No. They are cash prices verified in September 2026 from the manufacturer or a discount platform, and they change. Every price in the app shows its source and the date it was checked, so you can see how current it is.</p></details>
+
+  <details><summary>Does my insurance cover this?</summary>
+    <p>That depends on your plan and, for Medicare, on whether the specific drug is covered. Some drugs are covered for weight management and some are diabetes-indication only. Clicksy shows the coverage rules; your plan makes the decision.</p></details>
+
+  <details><summary>What is dose splitting?</summary>
+    <p>It is using a lower dose than the labelled top dose, drawn from a single approved pen or vial. Clicksy calculates the clicks and milligrams for you. It is not compounded medication and not a research chemical. Whether it is right for you is a clinical decision.</p></details>
+
+  <details><summary>Is my data private?</summary>
+    <p>Your health data is stored on your device and is not uploaded to us. See the <a href="/privacy.html">privacy policy</a> for the specifics.</p></details>
+
+  <details><summary>Who is this for?</summary>
+    <p>Patients managing their own medication and cost, and clinicians who want coverage and prior-authorization tools without mixing in their own records. The two modes are separate by design.</p></details>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><strong>Clicksy™</strong> — a tracking and cost tool. Not a medical device and not medical advice.</p>
+    <p>Clicksy does not prescribe, does not change your medication, and does not replace your clinician.
+       Always discuss dose or medication changes with your prescriber.</p>
+    <p><a href="/privacy.html">Privacy policy</a> · <a href="/pricing.html">Pricing</a> · Last reviewed: September 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
