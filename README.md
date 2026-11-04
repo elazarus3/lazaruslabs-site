@@ -7,6 +7,7 @@ Static site for **Clicksy™**, the GLP-1 dose-splitting and savings tracker.
 | `index.html` | Landing page |
 | `pricing.html` | Pricing hub — every medication, its source, and how patients pay |
 | `privacy.html` | Privacy policy |
+| `delete-my-data.html` | Data-deletion instructions — required by Google Play's Data safety section and linked from the store listing |
 | `assets/` | Clicksy brand marks |
 
 ## Deploy
