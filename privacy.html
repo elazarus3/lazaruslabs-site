@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy — Clicksy™</title>
-<meta name="description" content="How Clicksy handles your data. Your health information stays on your device.">
+<meta name="description" content="How Clicksy handles health records, Android backups, and Google Play purchases.">
 <link rel="icon" href="/assets/mark-48.png" sizes="48x48">
 <style>
   :root{ --blue:#0A5AA5; --blue-600:#084a86;
@@ -49,15 +49,16 @@
 
 <main class="wrap">
   <h1>Privacy policy</h1>
-  <p class="updated">Last updated: 26 October 2026</p>
+  <p class="updated">Last updated: 18 November 2026</p>
 
   <div class="key">
-    <p><strong>The short version.</strong> Clicksy stores your health information on your own device.
-       The app does not upload it to us. There is no account, no server holding your records, and no
-       advertising or activity-tracking SDK watching what you do.</p>
-    <p>One thing does leave your device: if you buy a subscription, purchase information is handled by
-       Google Play and by our subscription provider, RevenueCat. Your health data is never part of that.
-       See <a href="#purchases">Purchases and subscriptions</a>.</p>
+    <p><strong>The short version.</strong> Clicksy stores your health information in app storage on
+       your device and does not send your health records to Lazarus Labs. We do not operate an account
+       service or server that stores those records. The app has no advertising or activity-tracking
+       SDK.</p>
+    <p>Android may back up or transfer app data depending on your device settings. Clicksy uses
+       RevenueCat to check Pro access. Google Play and RevenueCat process purchase and restore
+       information without your health records. See <a href="#purchases">Purchases and subscriptions</a>.</p>
   </div>
 
   <h2>Who this covers</h2>
@@ -66,7 +67,7 @@
      privacy practices and your relationship with them.</p>
 
   <h2>What the app stores</h2>
-  <p>To do its job, Clicksy keeps the following <strong>on your device only</strong>:</p>
+  <p>Clicksy keeps the following in the app's storage on your device:</p>
   <ul>
     <li><strong>Health and body data</strong> — weight, height, waist, body composition, activity, sleep, nutrition, and dose logs you enter.</li>
     <li><strong>Your medication details</strong> — the drug, dose, pen and click information needed to calculate a split regimen.</li>
@@ -74,18 +75,19 @@
   </ul>
   <p>This information is written to your device's local app storage. It is not transmitted to us.
      We do not have a copy of it, and we cannot see it.</p>
+  <p>Depending on your Android settings, the operating system may back up or transfer Clicksy data
+     and restore it on this or another device. If you export or share a file from Clicksy, the copy
+     is kept wherever you chose to save or send it.</p>
 
   <h2>What we do not do</h2>
   <p>Specifically, Clicksy does not:</p>
   <ul>
     <li>create accounts or require you to sign in;</li>
-    <li>upload your health data to a server;</li>
+    <li>send your health records to Lazarus Labs;</li>
     <li>include third-party advertising or activity-tracking SDKs;</li>
     <li>sell, rent, or share your health information with anyone;</li>
     <li>use your health data for machine learning or model training.</li>
   </ul>
-  <p>The single exception to the list above is a subscription purchase, described in the next section.
-     It never involves your health data.</p>
 
   <h2>Provider mode</h2>
   <p>Clicksy separates patient mode from provider mode. A clinician using the provider tools works
@@ -98,56 +100,51 @@
      notification content, and we are not part of the messaging delivery system.</p>
 
   <h2>Deleting your data</h2>
-  <p>You can erase everything Clicksy has stored by using the app's own <strong>Delete all data</strong>
-     option in Settings — then confirm <strong>Delete Everything</strong> — or by uninstalling the
-     application. Because your health data lives on your device, we cannot delete it for you — and we
-     have no copy of it to delete.</p>
-  <p>Subscription records are the one exception, because they are held by Google and by RevenueCat.
-     Email <a href="mailto:support@lazaruslabs.app">support@lazaruslabs.app</a> to ask us to delete
-     them, and see the next section for how to cancel.</p>
+  <p>To clear data from this installation, choose <strong>Delete My Data</strong> in Settings and
+     confirm <strong>Delete Everything</strong>. Uninstalling removes the app's local data.
+     Android backups and files you exported or shared may remain. We do not have your health
+     records and cannot delete those copies for you.</p>
+  <p>Email <a href="mailto:support@lazaruslabs.app">support@lazaruslabs.app</a> to request deletion of
+     the RevenueCat record we use for Pro access. Google Play manages billing and keeps its own
+     purchase records.</p>
   <p>Full step-by-step instructions are on our
      <a href="/delete-my-data">delete your data</a> page.</p>
 
   <h2 id="purchases">Purchases and subscriptions</h2>
-  <p>Clicksy is free to use. Some features require a Pro subscription or a one-time purchase, and
-     buying one is entirely optional. If you never make a purchase, no purchase information is
-     collected at all.</p>
+  <p>Clicksy is free to use. A Pro subscription or one-time purchase is optional.</p>
   <ul>
     <li><strong>Payments are handled by Google Play.</strong> We never see, receive or store your card
-        or payment details — Google processes the payment and we only learn whether a subscription is
-        active.</li>
-    <li><strong>We use RevenueCat to manage subscriptions.</strong> RevenueCat is our subscription
-        infrastructure provider. It receives what Google tells it about the purchase: which product was
-        bought, when it started, and whether it is currently active. The app also sends RevenueCat an
-        anonymous app user identifier so a subscription can be restored after you reinstall.</li>
+        details.</li>
+    <li><strong>We use RevenueCat to manage Pro access.</strong> Clicksy uses a random installation
+        identifier to check Pro access, including for people using the free version. RevenueCat
+        can receive purchase information from Google Play when you buy or restore Pro and when
+        Clicksy checks an existing purchase. This can include the product, purchase date and whether
+        access is active.</li>
+    <li><strong>Country information.</strong> RevenueCat uses the transaction country when available.
+        Otherwise it may infer a country from your IP address and discard the address after doing so.</li>
     <li><strong>What RevenueCat does not receive:</strong> your health data, your dose or weight logs,
         your name, your email address, or anything else you enter in the app.</li>
     <li><strong>It is transmitted securely.</strong> This information is sent over an encrypted
         connection.</li>
-    <li><strong>It is not sold.</strong> Purchase information is used to provide and support your
-        subscription. It is not sold or rented to anyone.</li>
+    <li><strong>How purchase information is used.</strong> RevenueCat uses it to manage Pro access,
+        support purchases and report subscription activity on our behalf. We do not sell or rent it.</li>
     <li><strong>Cancel any time.</strong> Manage or cancel your subscription in the Google Play Store
         under Subscriptions. Uninstalling the app or clearing its data does <em>not</em> cancel a
         subscription.</li>
   </ul>
 
   <h2>This website</h2>
-  <p>Our website is a static site. It does not use advertising cookies, analytics, or tracking
-     pixels. It sets no cookies at all. Any information you choose to send us by email is used only
-     to reply to you.</p>
+  <p>Our website does not include analytics or advertising scripts. The hosting provider may process
+     technical request information to deliver and protect the site. If you email us, we use the
+     information you provide to respond and, when requested, to locate or delete an associated
+     RevenueCat record. Please do not include health records or payment card details in email.</p>
 
   <h2>Children</h2>
-  <p>Clicksy is intended for adults. It is not directed at children, and we do not knowingly
+  <p>Clicksy is intended for adults aged 18 and older. It is not directed at children, and we do not knowingly
      collect information from them.</p>
 
-  <h2>Your health information is sensitive</h2>
-  <p>Because Clicksy deals with weight, medication and body data, we treat your privacy seriously.
-     Keeping your data on your device is a design decision, not a policy promise — there is no
-     database for us to leak.</p>
-
   <h2>Changes to this policy</h2>
-  <p>If this policy changes, we will update the date at the top of this page. Material changes will
-     be noted in the app.</p>
+  <p>If this policy changes, we will update the date at the top of this page.</p>
 
   <h2>Contact</h2>
   <p>Questions about this policy, or about your data, can be sent to
@@ -155,8 +152,8 @@
      contact address for everything relating to Clicksy.</p>
 
   <div class="foot">
-    <p><strong>Clicksy™</strong> is a tracking and cost tool. It is not a medical device, does not
-       provide medical advice, and does not replace your clinician.</p>
+    <p><strong>Clicksy™</strong> provides medication tracking and cost estimates. Always discuss
+       dose or medication changes with your prescriber.</p>
     <p><a href="/">Home</a> · <a href="/pricing.html">Pricing</a></p>
   </div>
 </main>
